@@ -88,8 +88,22 @@ def update_cc_cards(eval_brand, city):
         return values.tolist()
 
     # Data for the horizontal bar charts
-    categories_1 = ['iQ1', 'iQ2','iQ3','iQ4','iQ5','iQ6','iQ6_4','iQ7','iQ8','iQ9','iQ10_1','iQ10_2']
-    values_1 = get_chart_data(['iQ1', 'iQ2','iQ3','iQ4','iQ5','iQ6','iQ6_4','iQ7','iQ8','iQ9','iQ10_1','iQ10_2'])
+    categories_1 = [
+    'Website Functionality (Tabs & Models)', 
+    'Website Features Functionality', 
+    'Information Availability', 
+    'Request Section Availability', 
+    'Request Submission Success', 
+    'Response to Test Drive Request', 
+    'Test Drive Confirmation', 
+    'Brochure Download', 
+    'Quotation Request Call', 
+    'Appointment Booking', 
+    'Overall Website Experience', 
+    'Likelihood to Purchase'
+    ]
+
+    values_1 = get_chart_data([    'iQ1', 'iQ2', 'iQ3', 'iQ4', 'iQ5',     'iQ6', 'iQ6_4', 'iQ7', 'iQ8',     'iQ9', 'iQ10_1', 'iQ10_2'])
 
      
     

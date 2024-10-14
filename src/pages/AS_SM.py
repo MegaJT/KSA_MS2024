@@ -88,8 +88,27 @@ def update_aon_cards(eval_brand, city):
         return values.tolist()
 
     # Data for the horizontal bar charts
-    categories_1 = ['iQ2',	'iQ3',	'iQ4',	'iQ5',	'iQ6',	'iQ7',	'iQ8',	'iQ9',	'iQ10',	'iQ11',	'iQ12',	'iQ13',]
-    values_1 = get_chart_data(categories_1)
+    categories_1 = [
+    'Time to respond via DM', 
+    'Time to respond publicly', 
+    'First response description', 
+    'Consultant’s response description', 
+    'Clarity of consultant’s communication', 
+    'Consultant actions during interaction', 
+    'Information provided during interaction about service/spare parts', 
+    'Usefulness of information provided', 
+    'How consultant closed the conversation', 
+    'Received call/response from service agent or spare parts consultant', 
+    'Service centre visit date confirmed', 
+    'Overall experience with social media interaction for service query', 
+    'Likelihood of future vehicle purchase'
+    ]
+
+    values_1 = get_chart_data([
+        'iQ2', 'iQ3', 'iQ4', 'iQ5', 'iQ6', 'iQ7', 'iQ8', 'iQ9', 
+        'iQ10', 'iQ11', 'iQ12', 'iQ13'
+    ])
+
 
     # Update charts with filtered data
     chart1 = IF.create_horizontal_bar_chart(categories_1, values_1,title='OVERALL')

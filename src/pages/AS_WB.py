@@ -89,7 +89,7 @@ def update_aon_cards(eval_brand, city):
 
     # Data for the horizontal bar charts
     categories_1 = ['iQ1',	'iQ2',	'iQ3',	'iQ4',	'iQ5',	'iQ6',	'iQ6_4',	'iQ6_3',	'iQ7',	'iQ7_2',	'iQ7_5',	'iQ8',	'iQ8_1',]
-    values_1 = get_chart_data(categories_1)
+    values_1 = get_chart_data(['iQ1',	'iQ2',	'iQ3',	'iQ4',	'iQ5',	'iQ6',	'iQ6_4',	'iQ6_3',	'iQ7',	'iQ7_2',	'iQ7_5',	'iQ8',	'iQ8_1',])
 
     # Update charts with filtered data
     chart1 = IF.create_horizontal_bar_chart(categories_1, values_1,title='OVERALL')

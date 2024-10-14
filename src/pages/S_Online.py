@@ -88,7 +88,17 @@ def update_son_cards(eval_brand, city):
         return values.tolist()
 
     # Data for the horizontal bar charts
-    categories_1 = ['iQ1', 'iQ2','iQ3','iQ4','iQ5','iQ6','iQ7','iQ12','iQ13']
+    categories_1 = [
+    'Brands on First Page', 
+    'Order of Brand Information', 
+    'MG Website Visibility', 
+    'Materials on First Page', 
+    'Order of MYNM Information', 
+    'Ease of Access (MYNM)', 
+    'Ease of Access (Brands)', 
+    'Overall Online Search Experience', 
+    'Purchase Likelihood (Online Search)'
+]
     values_1 = get_chart_data(['iQ1', 'iQ2','iQ3','iQ4','iQ5','iQ6','iQ7','iQ12','iQ13'])
 
      

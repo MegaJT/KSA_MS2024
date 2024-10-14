@@ -113,22 +113,22 @@ def update_sbr_cards(eval_brand, city):
         return values.tolist()
 
     # Data for the horizontal bar charts
-    categories_1 = ['Parking availability', 'Valet parking facility', 'Guided with parking']
+    categories_1 = ['Parking Availability', 'Valet Parking', 'Parking Guidance']
     values_1 = get_chart_data(['iQ1a', 'iQ1b', 'iQ1c'])
 
-    categories_2 = ['Time before greeted','Who provided greeting','Greeting description','Appearance','Handshake']
+    categories_2 = ['Greeting Time', 'Greeter Identification', 'Greeting Type','Consultant Appearance', 'Handshake/Fist Bump']
     values_2 = get_chart_data(['iQ2a', 'iQ2c', 'iQ2d', 'iQ2e'])
 
-    categories_3 = ['Manners','Recheck personal info','Asked personal info','Asked any Questions','Offer Tea/Coffee','Level of attentiveness','Level of recommendation']
+    categories_3 = ['Consultant Manner', 'Info Check - Appointment', 'Info Check - Walk-in','Consultant Actions', 'Refreshment Offer', 'Consultant Attentiveness','Vehicle Recommendation']
     values_3 = get_chart_data(['iQ3a', 'iQ3b', 'iQ3c', 'iQ3d', 'iQ3e', 'iQ3f', 'iQ3g'])
 
-    categories_4 = ['Model Advantages','Response','Test drive','Booking ','Booking assistance','Summary of impression ']
+    categories_4 = ['Model Comparison Response', 'Question Response',  'Vehicle Discussion Actions', 'Test Drive Offer', 'Booking Response', 'Booking Assistance']
     values_4 = get_chart_data(['iQ4a', 'iQ4b', 'iQ4c', 'iQ4d', 'iQ4e', 'iQ4f'])
 
-    categories_5 = ['Promotion','Pricing','Lease eligibility','Lease information','Lease explanation','Alternate Finance','Response to Objection','End of Interaction']
+    categories_5 = ['Service Promotion', 'Pricing Details', 'Finance Info Provided',                    'Finance/Offers Discussion', 'Lease/Offers Discussion',                     'Objection Handling', 'Closing Actions']
     values_5 = get_chart_data(['iQ5a', 'iQ5b', 'iQ5c', 'iQ5d', 'iQ5e', 'iQ5f', 'iQ5g'])
 
-    categories_6 = ['Appearance','Visible amenities','Seating area','Toilet facility','Car display','Vehicle inventory']
+    categories_6 = ['Sales Area Appearance', 'Amenities Available', 'Seating Area Appearance','Toilet Facilities', 'Car Display', 'Vehicle Inventory']
     values_6 = get_chart_data(['iQ6a', 'iQ6c', 'iQ6d', 'iQ6e', 'iQ6f', 'iQ6g'])
 
     

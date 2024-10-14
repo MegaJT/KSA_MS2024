@@ -112,22 +112,45 @@ def update_scc_cards(eval_brand, city):
         return values.tolist()
 
     # Data for the horizontal bar charts
-    categories_1 = ['iQ1a', 'iQ1c', 'iQ1d']
+    
+    categories_1 = ['Attempts before call answered', 
+                    'Number of button pushes before reaching person', 
+                    'Time taken to reach person via automated system']
     values_1 = get_chart_data(['iQ1a', 'iQ1c', 'iQ1d'])
 
-    categories_2 = ['iQ2b','iQ2c','iQ2d','iQ2e','iQ2f','iQ2g','iQ2h','iQ2i','iQ2k']
-    values_2 = get_chart_data(['iQ2b','iQ2c','iQ2d','iQ2e','iQ2f','iQ2g','iQ2h','iQ2i','iQ2k'])
+    categories_2 = ['Background noise during call', 
+                    'Greeting description', 
+                    'Attentiveness level of agent', 
+                    'Personalization by agent', 
+                    'Agent’s manner throughout interaction', 
+                    'Clarity of agent’s communication', 
+                    'Actions by agent during interaction', 
+                    'Action taken when asked for sales consultant', 
+                    'Average time spent on call']
+    values_2 = get_chart_data(['iQ2b', 'iQ2c', 'iQ2d', 'iQ2e', 'iQ2f', 'iQ2g', 
+                            'iQ2h', 'iQ2i', 'iQ2k'])
 
-    categories_3 = ['iQ3a','iQ3b','iQ3d','iQ3e','iQ3f','iQ3g','iQ3h','iQ3i']
-    values_3 = get_chart_data(['iQ3a','iQ3b','iQ3d','iQ3e','iQ3f','iQ3g','iQ3h','iQ3i'])
+    categories_3 = ['Received call from sales consultant', 
+                    'Time taken to contact by sales consultant', 
+                    'Actions by sales consultant', 
+                    'Sales consultant’s attentiveness', 
+                    'Recommendations by sales consultant', 
+                    'Personalization by sales consultant', 
+                    'Sales consultant’s manner', 
+                    'Clarity of sales consultant’s communication']
+    values_3 = get_chart_data(['iQ3a', 'iQ3b', 'iQ3d', 'iQ3e', 'iQ3f', 'iQ3g', 
+                            'iQ3h', 'iQ3i'])
 
-    categories_4 = ['iQ4a','iQ4b','iQ4c','iQ4d']
-    values_4 = get_chart_data(['iQ4a','iQ4b','iQ4c','iQ4d'])
+    categories_4 = ['Sales consultant’s response on model comparison', 
+                    'Placed on hold during interaction', 
+                    'How hold was communicated', 
+                    'Sales consultant’s actions during interaction']
+    values_4 = get_chart_data(['iQ4a', 'iQ4b', 'iQ4c', 'iQ4d'])
 
-    categories_5 = ['iQ5a','iQ5c']
-    values_5 = get_chart_data(['iQ5a','iQ5c'])
+    categories_5 = ['Likelihood of visiting dealership for purchase', 
+                    'Overall experience with call center']
+    values_5 = get_chart_data(['iQ5a', 'iQ5c'])
 
-    
     
     
 

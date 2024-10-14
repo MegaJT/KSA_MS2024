@@ -88,7 +88,21 @@ def update_cc_cards(eval_brand, city):
         return values.tolist()
 
     # Data for the horizontal bar charts
-    categories_1 = ['iQ1','iQ2','iQ3','iQ4','iQ5','wQ6','iQ7','iQ8','iQ9','iQ10','iQ11','iQ12','iQ13']
+    categories_1 = [
+    'DM Response Time', 
+    'Public Enquiry Response Time', 
+    'First Response Description', 
+    'Consultant Query Response', 
+    'Communication Clarity', 
+    'Questions Asked by Consultant', 
+    'Information Given on Desired Vehicle', 
+    'Usefulness of Information', 
+    'Conversation Closure', 
+    'Sales Consultant Follow-up', 
+    'Test Drive Date Confirmation', 
+    'Overall Social Media Experience', 
+    'Purchase Likelihood (Social Media)'
+]
     values_1 = get_chart_data(['iQ1','iQ2','iQ3','iQ4','iQ5','wQ6','iQ7','iQ8','iQ9','iQ10','iQ11','iQ12','iQ13'])
 
      
