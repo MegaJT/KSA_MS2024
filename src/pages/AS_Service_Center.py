@@ -5,6 +5,11 @@ import Input_Data as ID
 import Input_Function as IF
 
 
+from config import box_shadow
+from config import pill_style
+from config import chart_bg_space_style
+
+
 dash.register_page(__name__, path="/AS_Service_Center")
 
 
@@ -17,6 +22,7 @@ df['Eval_Brand_Text'] = df['Eval_Brand'].map(Eval_Brand_Dict)
 
 City_Dict = {1: 'Riyadh', 2: 'Jeddah', 3: 'Dammam'}
 df['City_Text'] = df['City'].map(City_Dict)
+
 
 
 # Layout
@@ -33,21 +39,29 @@ layout = dbc.Container([
             ])
         ])
     ]),
-    html.H4(id="asc-base-display"),  # Updated dynamically in callback
+    html.Div(html.H4(id="asc-base-display"),style=pill_style),
+
+
     html.Div(id="asc-card-container", style={"margin-top": "20px"}),
 
     html.Hr(),  
-    html.H2("Detailed Score", style={"text-align": "center", "margin-top": "20px"}), 
-    dbc.Row([
-        dbc.Col(dcc.Graph(id='asc-chart1'),width=6),
-        dbc.Col(dcc.Graph(id='asc-chart2'),width=6),
-        dbc.Col(dcc.Graph(id='asc-chart3'),width=6),
-        dbc.Col(dcc.Graph(id='asc-chart4'),width=6),
-        dbc.Col(dcc.Graph(id='asc-chart5'),width=6),
-        dbc.Col(dcc.Graph(id='asc-chart6'),width=6),
-        dbc.Col(dcc.Graph(id='asc-chart7'),width=6),
-        
-        ], style={"margin-top": "20px"}),
+    html.Div([
+        html.H2("Detailed Score", style={"text-align": "center", "margin-top": "20px"}), 
+        dbc.Row([
+            dbc.Col(html.Div(dcc.Graph(id='asc-chart1'),style={"box-shadow":box_shadow}),width=4),
+            dbc.Col(html.Div(dcc.Graph(id='asc-chart2'),style={"box-shadow":box_shadow}),width=4),
+            dbc.Col(html.Div(dcc.Graph(id='asc-chart3'),style={"box-shadow":box_shadow}),width=4),
+            ], style={"margin-top": "20px"}),
+        dbc.Row([
+            dbc.Col(html.Div(dcc.Graph(id='asc-chart4'),style={"box-shadow":box_shadow}),width=4),
+            dbc.Col(html.Div(dcc.Graph(id='asc-chart5'),style={"box-shadow":box_shadow}),width=4),
+            dbc.Col(html.Div(dcc.Graph(id='asc-chart6'),style={"box-shadow":box_shadow}),width=4),
+            ], style={"margin-top": "20px"}),
+        dbc.Row([
+            dbc.Col(html.Div(dcc.Graph(id='asc-chart7'),style={"box-shadow":box_shadow}),width=4),
+            ], style={"margin-top": "20px"}),
+    ],style=chart_bg_space_style
+    ),
         
 ], fluid=True)
 
@@ -246,4 +260,6 @@ def update_asc_cards(eval_brand, city):
     
     Base = f"Base: {len(df_filtered)}"
     return Base,dbc.Row(cards), chart1,chart2,chart3,chart4,chart5,chart6,chart7
+
         
+# https://ksa-ms2024-o1on.onrender.com/

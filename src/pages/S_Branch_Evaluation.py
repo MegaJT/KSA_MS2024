@@ -4,6 +4,11 @@ import dash_bootstrap_components as dbc
 import Input_Data as ID
 import Input_Function as IF
 
+from config import box_shadow 
+from config import background_color
+from config import pill_style
+
+
 
 dash.register_page(__name__, path="/S_Branch_Evaluation")
 
@@ -17,6 +22,8 @@ df['Eval_Brand_Text'] = df['Eval_Brand'].map(Eval_Brand_Dict)
 
 City_Dict = {1: 'Riyadh', 2: 'Jeddah', 3: 'Dammam'}
 df['City_Text'] = df['City'].map(City_Dict)
+
+
 
 
 # Layout
@@ -33,21 +40,24 @@ layout = dbc.Container([
             ])
         ])
     ]),
-    html.H4(id="sbr-base-display"),  # Updated dynamically in callback
+    
+    html.Div(html.H4(id="sbr-base-display"),style=pill_style),
     html.Div(id="sbr-card-container", style={"margin-top": "20px"}),
 
     html.Hr(),  
-    html.H2("Detailed Score", style={"text-align": "center", "margin-top": "20px"}), 
-    dbc.Row([
-        dbc.Col(dcc.Graph(id='sbr-chart1'),width=4),
-        dbc.Col(dcc.Graph(id='sbr-chart2'),width=4),
-        dbc.Col(dcc.Graph(id='sbr-chart3'),width=4),
-        ], style={"margin-top": "20px"}),
-    dbc.Row([
-        dbc.Col(dcc.Graph(id='sbr-chart4'),width=4),
-        dbc.Col(dcc.Graph(id='sbr-chart5'),width=4),
-        dbc.Col(dcc.Graph(id='sbr-chart6'),width=4),
-        ], style={"margin-top": "20px"})    
+    html.Div([
+        html.H2("Detailed Score", style={"text-align": "center", "margin-top": "20px"}), 
+        dbc.Row([
+            dbc.Col(html.Div(dcc.Graph(id='sbr-chart1'),style={"box-shadow":box_shadow}),width=4),
+            dbc.Col(html.Div(dcc.Graph(id='sbr-chart2'),style={"box-shadow":box_shadow}),width=4),
+            dbc.Col(html.Div(dcc.Graph(id='sbr-chart3'),style={"box-shadow":box_shadow}),width=4),
+            ], style={"margin-top": "20px"}),
+        dbc.Row([
+            dbc.Col(html.Div(dcc.Graph(id='sbr-chart4'),style={"box-shadow":box_shadow}),width=4),
+            dbc.Col(html.Div(dcc.Graph(id='sbr-chart5'),style={"box-shadow":box_shadow}),width=4),
+            dbc.Col(html.Div(dcc.Graph(id='sbr-chart6'),style={"box-shadow":box_shadow}),width=4),
+            ], style={"margin-top": "20px"}),
+    ])   
         
     
 ], fluid=True)

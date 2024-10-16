@@ -4,6 +4,11 @@ import dash_bootstrap_components as dbc
 import Input_Data as ID
 import Input_Function as IF
 
+from config import box_shadow
+from config import pill_style
+from config import chart_bg_space_style
+
+
 
 dash.register_page(__name__, path="/S_Website")
 
@@ -33,15 +38,16 @@ layout = dbc.Container([
             ])
         ])
     ]),
-    html.H4(id="swb-base-display"),  # Updated dynamically in callback
+    html.Div(html.H4(id="swb-base-display"),style=pill_style),
     html.Div(id="swb-card-container", style={"margin-top": "20px"}),
 
     html.Hr(),  
-    html.H2("Detailed Score", style={"text-align": "center", "margin-top": "20px"}), 
-    dbc.Row([
-        dbc.Col(dcc.Graph(id='swb-chart1'),width=6),
-        ], style={"margin-top": "20px"}),
-        
+    html.Div([
+        html.H2("Detailed Score", style={"text-align": "center", "margin-top": "20px"}), 
+        dbc.Row([
+            dbc.Col(dcc.Graph(id='swb-chart1'),width=12),
+            ], style={"margin-top": "20px"}),
+    ],style=chart_bg_space_style)        
 ], fluid=True)
 
 

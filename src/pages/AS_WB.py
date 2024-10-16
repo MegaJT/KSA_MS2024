@@ -5,6 +5,11 @@ import Input_Data as ID
 import Input_Function as IF
 
 
+from config import box_shadow
+from config import pill_style
+from config import chart_bg_space_style
+
+
 dash.register_page(__name__, path="/AS_WB")
 
 
@@ -18,6 +23,7 @@ df['Eval_Brand_Text'] = df['Eval_Brand'].map(Eval_Brand_Dict)
 City_Dict = {1: 'Riyadh', 2: 'Jeddah', 3: 'Dammam'}
 df['City_Text'] = df['City'].map(City_Dict)
 
+box_shadow= "0px 4px 8px rgba(0, 0, 0, 0.5)"
 
 # Layout
 layout = dbc.Container([
@@ -33,15 +39,17 @@ layout = dbc.Container([
             ])
         ])
     ]),
-    html.H4(id="awb-base-display"),  # Updated dynamically in callback
+    html.Div(html.H4(id="awb-base-display"),style=pill_style),
     html.Div(id="awb-card-container", style={"margin-top": "20px"}),
 
     html.Hr(),  
-    html.H2("Detailed Score", style={"text-align": "center", "margin-top": "20px"}), 
-    dbc.Row([
-        dbc.Col(dcc.Graph(id='awb-chart1'),width=6),
-        ], style={"margin-top": "20px"}),
-        
+    html.Div([
+        html.H2("Detailed Score", style={"text-align": "center", "margin-top": "20px"}), 
+        dbc.Row([
+            dbc.Col(html.Div(dcc.Graph(id='awb-chart1'),style={"box-shadow":box_shadow}),width=12),
+            
+            ], style={"margin-top": "20px"}),
+    ],style=chart_bg_space_style),        
 ], fluid=True)
 
 
@@ -88,7 +96,21 @@ def update_aon_cards(eval_brand, city):
         return values.tolist()
 
     # Data for the horizontal bar charts
-    categories_1 = ['iQ1',	'iQ2',	'iQ3',	'iQ4',	'iQ5',	'iQ6',	'iQ6_4',	'iQ6_3',	'iQ7',	'iQ7_2',	'iQ7_5',	'iQ8',	'iQ8_1',]
+    categories_1 = [
+    'Website functionality check',
+    'Functionality of specific options',
+    'Info availability on website',
+    'Request section availability',
+    'Successful service/repair request',
+    'Response from dealership received',
+    'Confirmation of service booking',
+    'Appointment booked for service',
+    'Response on spare parts request',
+    'Confirmation on spare parts details',
+    'Appointment for spare parts collection',
+    'Overall website experience',
+    'Likelihood of future service/purchase'
+    ]
     values_1 = get_chart_data(['iQ1',	'iQ2',	'iQ3',	'iQ4',	'iQ5',	'iQ6',	'iQ6_4',	'iQ6_3',	'iQ7',	'iQ7_2',	'iQ7_5',	'iQ8',	'iQ8_1',])
 
     # Update charts with filtered data

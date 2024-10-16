@@ -5,6 +5,11 @@ import Input_Data as ID
 import Input_Function as IF
 import openai  # For generating insights
 
+from config import box_shadow
+from config import pill_style
+from config import chart_bg_space_style
+
+
 dash.register_page(__name__, path="/")
 
 # Sales DataFrame
@@ -21,6 +26,8 @@ df_aftersales['Eval_Brand_Text'] = df_aftersales['BRND'].map(Eval_Brand_Dict)
 City_Dict = {1: 'Riyadh', 2: 'Jeddah', 3: 'Dammam'}
 df_sales['City_Text'] = df_sales['CITY'].map(City_Dict)
 df_aftersales['City_Text'] = df_aftersales['CITY'].map(City_Dict)
+
+
 
 # Function to generate insights using the updated OpenAI API
 def generate_insights(sales_data, aftersales_data):
@@ -64,14 +71,14 @@ layout = dbc.Container([
 
     # Sales Section
     html.H3("Sales Overall Score"),
-    html.H4(id="sales-base-display"),  # Display number of records for sales
+    html.Div(html.H4(id="sales-base-display"),style=pill_style),
     html.Div(id="sales-card-container", style={"margin-top": "20px"}),  # Sales overall score cards
 
     html.Hr(),
 
     # After Sales Section
     html.H3("After Sales Overall Score"),
-    html.H4(id="aftersales-base-display"),  # Display number of records for after sales
+    html.Div(html.H4(id="aftersales-base-display"),style=pill_style),
     html.Div(id="aftersales-card-container", style={"margin-top": "20px"}),  # After sales overall score cards
 
     html.Hr(),

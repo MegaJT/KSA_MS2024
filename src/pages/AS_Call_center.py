@@ -4,6 +4,11 @@ import dash_bootstrap_components as dbc
 import Input_Data as ID
 import Input_Function as IF
 
+from config import box_shadow
+from config import pill_style
+from config import chart_bg_space_style
+
+
 
 dash.register_page(__name__, path="/AS_Call_center")
 
@@ -17,6 +22,8 @@ df['Eval_Brand_Text'] = df['Eval_Brand'].map(Eval_Brand_Dict)
 
 City_Dict = {1: 'Riyadh', 2: 'Jeddah', 3: 'Dammam'}
 df['City_Text'] = df['City'].map(City_Dict)
+
+box_shadow= "0px 4px 8px rgba(0, 0, 0, 0.5)"
 
 
 # Layout
@@ -33,20 +40,21 @@ layout = dbc.Container([
             ])
         ])
     ]),
-    html.H4(id="acc-base-display"),  # Updated dynamically in callback
+    html.Div(html.H4(id="acc-base-display"),style=pill_style),
     html.Div(id="acc-card-container", style={"margin-top": "20px"}),
 
     html.Hr(),  
-    html.H2("Detailed Score", style={"text-align": "center", "margin-top": "20px"}), 
-    dbc.Row([
-        dbc.Col(dcc.Graph(id='acc-chart1'),width=4),
-        dbc.Col(dcc.Graph(id='acc-chart2'),width=4),
-        dbc.Col(dcc.Graph(id='acc-chart3'),width=4),
-        ], style={"margin-top": "20px"}),
-    dbc.Row([
-        dbc.Col(dcc.Graph(id='acc-chart4'),width=4),
-        ], style={"margin-top": "20px"})    
-        
+    html.Div([
+        html.H2("Detailed Score", style={"text-align": "center", "margin-top": "20px"}), 
+        dbc.Row([
+            dbc.Col(html.Div(dcc.Graph(id='acc-chart1'),style={"box-shadow":box_shadow}),width=4),
+            dbc.Col(html.Div(dcc.Graph(id='acc-chart2'),style={"box-shadow":box_shadow}),width=4),
+            dbc.Col(html.Div(dcc.Graph(id='acc-chart3'),style={"box-shadow":box_shadow}),width=4),
+            ], style={"margin-top": "20px"}),
+        dbc.Row([
+            dbc.Col(html.Div(dcc.Graph(id='acc-chart4'),style={"box-shadow":box_shadow}),width=4),
+            ], style={"margin-top": "20px"})    
+    ],style=chart_bg_space_style)        
     
 ], fluid=True)
 
@@ -106,17 +114,35 @@ def update_acc_cards(eval_brand, city):
         return values.tolist()
 
     # Data for the horizontal bar charts
-    categories_1 = ['iQ1a','iQ1b','iQ1d','iQ1e']
-    values_1 = get_chart_data(categories_1)
+    categories_1 = list_1 = [
+    'Attempts before answer',
+    'Rings before answer',
+    'Prompts before person',
+    'Time to reach person'
+    ]
+    values_1 = get_chart_data(['iQ1a','iQ1b','iQ1d','iQ1e'])
 
-    categories_2 = ['iQ2b','iQ2c','iQ2d','iQ2e','iQ2f','iQ2g']
-    values_2 = get_chart_data(categories_2)
+    categories_2 = [
+    'Background noise level',
+    'How you were greeted',
+    'Agent attentiveness level',
+    'Personalized service actions',
+    'Agent’s manner throughout',
+    'Clarity of agent’s communication'
+    ]
+    values_2 = get_chart_data(['iQ2b','iQ2c','iQ2d','iQ2e','iQ2f','iQ2g'])
 
-    categories_3 = ['iQ3a','iQ3_2',]
-    values_3 = get_chart_data(categories_3)
+    categories_3 = [
+    'Agent actions during interaction',
+    'Advisor actions during interaction'
+    ]
+    values_3 = get_chart_data(['iQ3a','iQ3_2',])
 
-    categories_4 = ['iQ4_1','iQ4_1b',]
-    values_4 = get_chart_data(categories_4)
+    categories_4 = [
+    'Likelihood to visit for service',
+    'Overall call center experience'
+    ]
+    values_4 = get_chart_data(['iQ4_1','iQ4_1b',])
 
         
         

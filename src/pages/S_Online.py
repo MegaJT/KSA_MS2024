@@ -4,6 +4,10 @@ import dash_bootstrap_components as dbc
 import Input_Data as ID
 import Input_Function as IF
 
+from config import box_shadow
+from config import pill_style
+from config import chart_bg_space_style
+
 
 dash.register_page(__name__, path="/S_Online")
 
@@ -19,6 +23,8 @@ City_Dict = {1: 'Riyadh', 2: 'Jeddah', 3: 'Dammam'}
 df['City_Text'] = df['City'].map(City_Dict)
 
 
+box_shadow= {"box-shadow":"0px 4px 8px rgba(0, 0, 0, 0.5)"}
+
 # Layout
 layout = dbc.Container([
     html.Div([
@@ -33,15 +39,17 @@ layout = dbc.Container([
             ])
         ])
     ]),
-    html.H4(id="son-base-display"),  # Updated dynamically in callback
+    
+    html.Div(html.H4(id="son-base-display"),style=pill_style),
     html.Div(id="son-card-container", style={"margin-top": "20px"}),
 
     html.Hr(),  
-    html.H2("Detailed Score", style={"text-align": "center", "margin-top": "20px"}), 
-    dbc.Row([
-        dbc.Col(dcc.Graph(id='son-chart1'),width=6),
-        ], style={"margin-top": "20px"}),
-        
+    html.Div([
+        html.H2("Detailed Score", style={"text-align": "center", "margin-top": "20px"}), 
+        dbc.Row([
+            dbc.Col(html.Div(dcc.Graph(id='son-chart1'),style={**box_shadow}),width=12),
+            ], style={"margin-top": "20px"}),
+    ],style=chart_bg_space_style)        
 ], fluid=True)
 
 

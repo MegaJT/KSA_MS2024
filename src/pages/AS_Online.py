@@ -4,6 +4,10 @@ import dash_bootstrap_components as dbc
 import Input_Data as ID
 import Input_Function as IF
 
+from config import box_shadow
+from config import pill_style
+from config import chart_bg_space_style
+
 
 dash.register_page(__name__, path="/AS_Online")
 
@@ -17,6 +21,7 @@ df['Eval_Brand_Text'] = df['Eval_Brand'].map(Eval_Brand_Dict)
 
 City_Dict = {1: 'Riyadh', 2: 'Jeddah', 3: 'Dammam'}
 df['City_Text'] = df['City'].map(City_Dict)
+
 
 
 # Layout
@@ -33,15 +38,17 @@ layout = dbc.Container([
             ])
         ])
     ]),
-    html.H4(id="aon-base-display"),  # Updated dynamically in callback
+    html.Div(html.H4(id="aon-base-display"),style=pill_style),
     html.Div(id="aon-card-container", style={"margin-top": "20px"}),
 
     html.Hr(),  
-    html.H2("Detailed Score", style={"text-align": "center", "margin-top": "20px"}), 
-    dbc.Row([
-        dbc.Col(dcc.Graph(id='aon-chart1'),width=6),
-        ], style={"margin-top": "20px"}),
-        
+    html.Div([
+        html.H2("Detailed Score", style={"text-align": "center", "margin-top": "20px"}), 
+        dbc.Row([
+            dbc.Col(html.Div(dcc.Graph(id='aon-chart1'),style={"box-shadow":box_shadow}),width=6),
+            
+            ], style={"margin-top": "20px"}),
+    ],style=chart_bg_space_style)    
 ], fluid=True)
 
 
@@ -88,8 +95,20 @@ def update_aon_cards(eval_brand, city):
         return values.tolist()
 
     # Data for the horizontal bar charts
-    categories_1 = ['iQ1','iQ2_1',	'iQ2_2','iQ2_3','iQ2_4','iQ2_5','iQ2_6','iQ2_7','iQ3','iQ4','iQ5','iQ6']
-    values_1 = get_chart_data(categories_1)
+    categories_1 = ['Info on first search page',
+    'Order of MYNM service info',
+    'Order of other service info',
+    'Order of MYNM website link',
+    'Order of other service websites',
+    'Order of other brand websites',
+    'Order of OEM brand websites',
+    'Order of other links',
+    'Ease of accessing MYNM info',
+    'Ease of accessing brand info',
+    'Overall search experience',
+    'Likelihood of next steps',
+    ]
+    values_1 = get_chart_data(['iQ1','iQ2_1','iQ2_2','iQ2_3','iQ2_4','iQ2_5','iQ2_6','iQ2_7','iQ3','iQ4','iQ5','iQ6'])
 
     # Update charts with filtered data
     chart1 = IF.create_horizontal_bar_chart(categories_1, values_1,title='OVERALL')

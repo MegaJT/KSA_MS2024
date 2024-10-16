@@ -2,6 +2,11 @@ import dash
 from dash import Dash, html, dcc, page_registry, page_container
 import dash_bootstrap_components as dbc
 
+from config import box_shadow
+from config import box_shadow_rounded_corner
+from config import chart_bg_space_style
+
+
 # Initialize the app
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], use_pages=True)
 server=app.server
@@ -19,8 +24,8 @@ navbar1 = dbc.NavbarSimple(
         dbc.NavLink("WEBSITE", href="/S_Website", active="exact"),
         dbc.NavLink("ONLINE", href="/S_Online", active="exact"),
         dbc.NavLink("SM", href="/S_SM", active="exact"),
-    ]
-)
+    ],
+style=box_shadow_rounded_corner)
 
 navbar2 = dbc.NavbarSimple(
     brand="AFTER SALES",
@@ -28,13 +33,14 @@ navbar2 = dbc.NavbarSimple(
     color="secondary",  # Sets the background color (Bootstrap color class)
     dark=True,  # Makes the text light for dark backgrounds
     children=[
-        dbc.NavLink("CALL CENTER", href="/AS_Call_center", active="exact"),
-        dbc.NavLink("ONLINE", href="/AS_Online", active="exact"),
         dbc.NavLink("SERVICE CENTER", href="/AS_Service_Center", active="exact"),
-        dbc.NavLink("SM", href="/AS_SM", active="exact"),
+        dbc.NavLink("CALL CENTER", href="/AS_Call_center", active="exact"),
         dbc.NavLink("WEBSITE", href="/AS_WB", active="exact"),
-    ]
-)
+        dbc.NavLink("ONLINE", href="/AS_Online", active="exact"),
+        dbc.NavLink("SM", href="/AS_SM", active="exact"),
+        
+    ],
+style=box_shadow_rounded_corner)
 
 
 
@@ -52,9 +58,10 @@ app.layout = dbc.Container([
         ]),
         dbc.Row([html.Hr()]),
     ]),
-    navbar1,
-    html.Div([html.Hr()]),
-    navbar2,
+    
+    html.Div([  navbar1,
+                navbar2,
+            ]),
     html.Div([html.Hr()]),
     html.Div(page_container),  # Will contain page layouts
 

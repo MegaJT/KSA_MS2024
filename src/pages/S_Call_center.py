@@ -4,6 +4,9 @@ import dash_bootstrap_components as dbc
 import Input_Data as ID
 import Input_Function as IF
 
+from config import box_shadow
+from config import pill_style
+from config import chart_bg_space_style
 
 dash.register_page(__name__, path="/S_Call_center")
 
@@ -18,6 +21,7 @@ df['Eval_Brand_Text'] = df['Eval_Brand'].map(Eval_Brand_Dict)
 City_Dict = {1: 'Riyadh', 2: 'Jeddah', 3: 'Dammam'}
 df['City_Text'] = df['City'].map(City_Dict)
 
+box_shadow= "0px 4px 8px rgba(0, 0, 0, 0.5)"
 
 # Layout
 layout = dbc.Container([
@@ -33,22 +37,25 @@ layout = dbc.Container([
             ])
         ])
     ]),
-    html.H4(id="scc-base-display"),  # Updated dynamically in callback
+    html.Div(html.H4(id="scc-base-display"),style=pill_style),
     html.Div(id="scc-card-container", style={"margin-top": "20px"}),
 
     html.Hr(),  
-    html.H2("Detailed Score", style={"text-align": "center", "margin-top": "20px"}), 
-    dbc.Row([
-        dbc.Col(dcc.Graph(id='scc-chart1'),width=4),
-        dbc.Col(dcc.Graph(id='scc-chart2'),width=4),
-        dbc.Col(dcc.Graph(id='scc-chart3'),width=4),
+    html.Div([
+        html.H2("Detailed Score", style={"text-align": "center", "margin-top": "20px"}), 
+        dbc.Row([
+            dbc.Col(html.Div(dcc.Graph(id='scc-chart1'),style={"box-shadow":box_shadow}),width=6),
+            dbc.Col(html.Div(dcc.Graph(id='scc-chart2'),style={"box-shadow":box_shadow}),width=6),
+            ], style={"margin-top": "20px"}),
+        dbc.Row([
+            dbc.Col(html.Div(dcc.Graph(id='scc-chart3'),style={"box-shadow":box_shadow}),width=6),
+            dbc.Col(html.Div(dcc.Graph(id='scc-chart4'),style={"box-shadow":box_shadow}),width=6),
+            
         ], style={"margin-top": "20px"}),
-    dbc.Row([
-        dbc.Col(dcc.Graph(id='scc-chart4'),width=4),
-        dbc.Col(dcc.Graph(id='scc-chart5'),width=4),
-        
-        ], style={"margin-top": "20px"})    
-        
+        dbc.Row([
+            dbc.Col(html.Div(dcc.Graph(id='scc-chart5'),style={"box-shadow":box_shadow}),width=6),
+            ], style={"margin-top": "20px"})        
+    ],style=chart_bg_space_style)        
     
 ], fluid=True)
 
@@ -113,42 +120,52 @@ def update_scc_cards(eval_brand, city):
 
     # Data for the horizontal bar charts
     
-    categories_1 = ['Attempts before call answered', 
-                    'Number of button pushes before reaching person', 
-                    'Time taken to reach person via automated system']
+    categories_1 = [
+        'Attempts before answer',
+        'Prompts before person',
+        'Time to reach person'
+    ]
     values_1 = get_chart_data(['iQ1a', 'iQ1c', 'iQ1d'])
 
-    categories_2 = ['Background noise during call', 
-                    'Greeting description', 
-                    'Attentiveness level of agent', 
-                    'Personalization by agent', 
-                    'Agent’s manner throughout interaction', 
-                    'Clarity of agent’s communication', 
-                    'Actions by agent during interaction', 
-                    'Action taken when asked for sales consultant', 
-                    'Average time spent on call']
+    categories_2 = [
+        'Background noise level',
+        'How you were greeted',
+        'Agent attentiveness level',
+        'Personalized service actions',
+        'Agent’s manner throughout',
+        'Clarity of agent’s communication',
+        'Agent actions during interaction',
+        'Request to speak with consultant',
+        'Time spent on call'
+    ]
     values_2 = get_chart_data(['iQ2b', 'iQ2c', 'iQ2d', 'iQ2e', 'iQ2f', 'iQ2g', 
                             'iQ2h', 'iQ2i', 'iQ2k'])
 
-    categories_3 = ['Received call from sales consultant', 
-                    'Time taken to contact by sales consultant', 
-                    'Actions by sales consultant', 
-                    'Sales consultant’s attentiveness', 
-                    'Recommendations by sales consultant', 
-                    'Personalization by sales consultant', 
-                    'Sales consultant’s manner', 
-                    'Clarity of sales consultant’s communication']
+    categories_3 =[
+        'Received call from consultant',
+        'Time to contact by consultant',
+        'Consultant actions during interaction',
+        'Consultant attentiveness level',
+        'Vehicle recommendation actions',
+        'Personalized discussion actions',
+        'Consultant’s manner throughout',
+        'Clarity of consultant’s communication'
+    ]
     values_3 = get_chart_data(['iQ3a', 'iQ3b', 'iQ3d', 'iQ3e', 'iQ3f', 'iQ3g', 
                             'iQ3h', 'iQ3i'])
 
-    categories_4 = ['Sales consultant’s response on model comparison', 
-                    'Placed on hold during interaction', 
-                    'How hold was communicated', 
-                    'Sales consultant’s actions during interaction']
+    categories_4 = [
+        'Consultant response to questions',
+        'Put on hold by consultant',
+        'How hold was handled',
+        'Consultant actions during interaction'
+    ]
     values_4 = get_chart_data(['iQ4a', 'iQ4b', 'iQ4c', 'iQ4d'])
 
-    categories_5 = ['Likelihood of visiting dealership for purchase', 
-                    'Overall experience with call center']
+    categories_5 =  [
+        'Likelihood to visit dealership',
+        'Overall experience with call center'
+    ]
     values_5 = get_chart_data(['iQ5a', 'iQ5c'])
 
     
