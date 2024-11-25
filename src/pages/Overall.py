@@ -20,8 +20,8 @@ df_aftersales = ID.AS_ovr_df
 
 # Brand and City Dictionaries
 Eval_Brand_Dict = {1: 'Hyundai', 2: 'Toyota', 3: 'Nissan', 4: 'Ford', 5: 'Lincoln', 6: 'MG', 7: 'Cherry', 8: 'KIA'}
-df_sales['Eval_Brand_Text'] = df_sales['BRND'].map(Eval_Brand_Dict)
-df_aftersales['Eval_Brand_Text'] = df_aftersales['BRND'].map(Eval_Brand_Dict)
+df_sales['Eval_Brand_Text'] = df_sales['BRND_DASH'].map(Eval_Brand_Dict)
+df_aftersales['Eval_Brand_Text'] = df_aftersales['BRND_DASH'].map(Eval_Brand_Dict)
 
 City_Dict = {1: 'Riyadh', 2: 'Jeddah', 3: 'Dammam'}
 df_sales['City_Text'] = df_sales['CITY'].map(City_Dict)
@@ -103,7 +103,7 @@ def update_sales_and_aftersales_cards(eval_brand, city):
     # ---- Sales Data Filtering ----
     df_sales_filtered = df_sales.copy()
     if eval_brand != 0:
-        df_sales_filtered = df_sales_filtered[df_sales_filtered['BRND'] == eval_brand]
+        df_sales_filtered = df_sales_filtered[df_sales_filtered['BRND_DASH'] == eval_brand]
     
     if city != 0:
         df_sales_filtered = df_sales_filtered[df_sales_filtered['CITY'] == city]
@@ -111,7 +111,7 @@ def update_sales_and_aftersales_cards(eval_brand, city):
     # ---- After Sales Data Filtering ----
     df_aftersales_filtered = df_aftersales.copy()
     if eval_brand != 0:
-        df_aftersales_filtered = df_aftersales_filtered[df_aftersales_filtered['BRND'] == eval_brand]
+        df_aftersales_filtered = df_aftersales_filtered[df_aftersales_filtered['BRND_DASH'] == eval_brand]
     
     if city != 0:
         df_aftersales_filtered = df_aftersales_filtered[df_aftersales_filtered['CITY'] == city]

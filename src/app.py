@@ -70,3 +70,7 @@ app.layout = dbc.Container([
 
 if __name__ == '__main__':
     app.run_server(debug=True)
+
+
+
+# ksa-ms2024-o1on.onrender.com/
