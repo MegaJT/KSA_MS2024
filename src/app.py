@@ -49,9 +49,9 @@ app.layout = dbc.Container([
     dcc.Location(id='url', refresh=False),
     html.Div([
         dbc.Row([
-            dbc.Col([html.Img(src='assets/DG_Logo.png', height="75px")], width=2),
+            dbc.Col([html.Img(src='assets/DG_Logo.jpg', height="100px")], width=2),
             dbc.Col([html.H1("")], width=2),
-            dbc.Col([html.H1("MYSTERY SHOPPING KSA")], width=4),
+            dbc.Col([html.H1("MYSTERY SHOPPING -  KSA")], width=5),
             dbc.Col([html.H1("")], width=2),
             dbc.Col([html.H1("")], width=2),
             #dbc.Col([html.Img(src='assets/DG_Logo.png', height="75px",style={"float": "right"})], width=2),
