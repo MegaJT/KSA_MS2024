@@ -3,27 +3,13 @@ import plotly.graph_objs as go
 import plotly.express as px
 # Function to get gradient color
 def get_gradient_color(value):
-    if value <= 10:
-        return '#FA9372'
-    elif value <= 20:
-        return '#F29D75'
-    elif value <= 30:
-        return '#EAA779'
-    elif value <= 40:
-        return '#E2B27C'
-    elif value <= 50:
-        return '#DABC80'
-    elif value <= 60:
-        return '#D2C683'
-    elif value <= 70:
-        return '#CAD087'
-    elif value <= 80:
-        return '#C2DB8A'
-    elif value <= 90:
-        return '#BAE58E'
-    else:
-        return '#B2EF91'
-
+    if value < 50:
+        return '#ce0403'
+    elif value < 75:
+        return '#cc9a04'
+    elif value <= 100:
+        return '#5d8c3c'
+    
 # Function to create cards
 def Create_Cards(Header, Body, bgcolor):
     card = dbc.Card(
@@ -43,6 +29,7 @@ def Create_Cards(Header, Body, bgcolor):
                     "font-size": "60px",
                     "font-weight": "bold",
                     "background-color": bgcolor,
+                    "color": "white",
                 },
             ),
         ],
